@@ -24,6 +24,8 @@ TEST(json, test_struct)
 TEST(json, json_class_test)
 {
   ASSERT_TRUE(json_class_test() == 0);
+  ASSERT_TRUE(json_ifstream_test() == 0);
+  ASSERT_TRUE(json_ofstream_test() == 0);
 }
 
 

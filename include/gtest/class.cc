@@ -4,6 +4,8 @@
 #include <cstdio>
 
 #include <iostream>
+#include <fstream>
+
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -38,7 +40,56 @@ namespace ns {
   };
 }
 
-extern int json_class_test()
+int json_ifstream_test()
+{
+  std::ifstream fs("in.json");
+  if (fs.bad()) {
+    cout << __func__ << __LINE__ << endl;
+    return 1;
+  }
+
+  json j;
+  fs >> j;
+  ns::Person p = j;
+
+  if (p.getName() != "fanpf" || p.getAge() != 38 || p.getAddress() != "tianyangcheng") {
+    goto err;
+  }
+
+  fs.close();
+  return 0;
+
+err:
+
+  fs.close();
+  return 1;
+}
+
+int json_ofstream_test()
+{
+  ns::Person p("fanpf", "tianyangcheng", 38);
+  json j = p;
+
+  std::ofstream fs("out.json");
+  fs << j << std::endl;
+  fs.close();
+
+  std::ifstream o("out.json");
+
+  json jo;
+  o >> jo;
+
+  o.close();
+
+  auto result = json::diff(j, jo);
+  if (result.dump() != "[]") {
+    cout << "FAIL:" << __func__ << __LINE__ << endl;
+  }
+
+  return 0;
+}
+
+int json_class_test()
 {
   //class 初始化 (), struct 初始化 {}
   ns::Person p("Ned Flanders", "744 Evergreen Terrace", 60);
