@@ -37,7 +37,35 @@ namespace ns {
         return o;
       }
 
-      NLOHMANN_DEFINE_TYPE_INTRUSIVE(Person, name, address, age)
+#if 1
+      NLOHMANN_DEFINE_TYPE_INTRUSIVE(Person, name, address, age);
+#else 
+
+    friend void to_json(json &j, const Person &p)
+    {
+        j = json{
+            {"name", p.name},
+            {"address", p.address},
+            {"age", p.age}
+		};
+    }
+
+	  friend void from_json(const json &j, Person &p)
+	  {
+		  if (j.find("name") != j.end()) {
+			j.at("name").get_to(p.name);
+		  }
+
+		  if (j.find("address") != j.end()) {
+			  j.at("address").get_to(p.address);
+		  }
+
+		  if (j.find("age") != j.end()) {
+			  j.at("age").get_to(p.age);
+		  }
+	  }
+
+#endif
   };
 }
 
@@ -49,9 +77,14 @@ int json_ifstream_test()
       return 1;
     }
 
+#if 1
     json j;
     cout << "before person:" << endl;
     fs >> j;
+#else
+	json j = json::parse(fs);
+    cout << "before person:" << endl;
+#endif
     //throw exception 之后的代码不会执行
     ns::Person p = j;
 
@@ -119,3 +152,11 @@ int json_class_test()
 
   return 0;
 }
+
+#if 0
+int main()
+{
+	json_ifstream_test();
+	return 0;
+}
+#endif

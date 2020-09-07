@@ -45,3 +45,13 @@ int json_struct_test()
   return 0;
 }
 
+#if 0
+int main()
+{
+	json_struct_test();
+
+	return 0;
+}
+
+#endif
+
