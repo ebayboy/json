@@ -1,0 +1,44 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CC	Makefile	/^CC = g++$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -c -g -O0 -std=c++17 -Wall$/;"	m
+INCLUDES	Makefile	/^INCLUDES = -I .\/..  $/;"	m
+LD	Makefile	/^LD = g++$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS = -lgtest -lpthread \/usr\/local\/glog\/lib\/libglog.a$/;"	m
+LIB	Makefile	/^LIB = -L \/usr\/local\/googletest\/lib64\/$/;"	m
+OBJS_C	Makefile	/^OBJS_C=$(SRC_C:.c=.o)$/;"	m
+OBJS_CPP	Makefile	/^OBJS_CPP=$(SRC_CPP:.cc=.o)$/;"	m
+Person	class.cc	/^      Person():name(""), address(""), age(0) {}$/;"	f	class:ns::Person
+Person	class.cc	/^      Person(string name, string address, int age) : name(name), address(address), age(age) {} $/;"	f	class:ns::Person
+Person	class.cc	/^  class Person {$/;"	c	namespace:ns	file:
+SRC_C	Makefile	/^SRC_C := $(wildcard *.c)$/;"	m
+SRC_CPP	Makefile	/^SRC_CPP := $(wildcard *.cc)$/;"	m
+TARGET	Makefile	/^TARGET = test$/;"	m
+TEST	test.cc	/^TEST(json, json_class_test)$/;"	f
+TEST	test.cc	/^TEST(json, test_struct)$/;"	f
+address	class.cc	/^      std::string address;$/;"	m	class:ns::Person	file:
+address	struct.cc	/^    std::string address;$/;"	m	struct:ns::person	file:
+age	class.cc	/^      int age;$/;"	m	class:ns::Person	file:
+age	struct.cc	/^    int age;$/;"	m	struct:ns::person	file:
+dd	sample.cc	8;"	d	file:
+getAddress	class.cc	/^      string getAddress() { return address; }$/;"	f	class:ns::Person
+getAge	class.cc	/^      int getAge() { return age; }$/;"	f	class:ns::Person
+getName	class.cc	/^      string getName() { return name; }$/;"	f	class:ns::Person
+json_class_test	class.cc	/^int json_class_test()$/;"	f
+json_ifstream_test	class.cc	/^int json_ifstream_test()$/;"	f
+json_ofstream_test	class.cc	/^int json_ofstream_test()$/;"	f
+json_struct_test	struct.cc	/^int json_struct_test()$/;"	f
+main	main.cc	/^int main(int argc, char **argv)$/;"	f
+name	class.cc	/^      std::string name;$/;"	m	class:ns::Person	file:
+name	struct.cc	/^    std::string name;$/;"	m	struct:ns::person	file:
+ns	class.cc	/^namespace ns {$/;"	n	file:
+ns	struct.cc	/^namespace ns {$/;"	n	file:
+operator <<	class.cc	/^      friend std::ostream& operator<<(std::ostream& o, const Person& s)$/;"	f	class:ns::Person
+person	struct.cc	/^  struct person {$/;"	s	namespace:ns	file:
+sample_test	sample.cc	/^extern int sample_test()$/;"	f
+test_j_string	sample.cc	/^static int test_j_string()$/;"	f	file:
+test_parse	sample.cc	/^static int test_parse()$/;"	f	file:
