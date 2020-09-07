@@ -1,0 +1,2 @@
+
+1. try {} catch {} out_range_of， 抛出异常后面的代码是执行不到的
